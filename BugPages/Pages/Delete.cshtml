@@ -1,0 +1,23 @@
+﻿@page
+@model BugPages.Pages.DeleteModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h2>Delete</h2>
+<hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.Bug.Name</div>
+    <div class="panel-body">
+        @Model.Bug.Summary
+    </div>
+</div>
+
+<form method="post">
+    <input asp-for="Bug.Id" hidden />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="index" class="btn btn-link">Back to list</a>
+</form>

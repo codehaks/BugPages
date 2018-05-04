@@ -1,0 +1,17 @@
+﻿@page
+@model BugPages.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+<hr>
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.Bug.Name</div>
+    <div class="panel-body">
+        @Model.Bug.Summary
+    </div>
+</div>
+<a asp-page="index" class="btn btn-link">Back to list</a>
+

@@ -38,7 +38,7 @@
                 <td>@bug.Name</td>
                 <td>@bug.Summary</td>
                 <td>
-                    <a asp-action="details" asp-route-id="@bug.Id" class="btn btn-default">Details</a>
+                    <a asp-page="details" asp-route-id="@bug.Id" class="btn btn-default">Details</a>
                     <a asp-action="delete" asp-route-id="@bug.Id" class="btn btn-danger">Delete</a>
                     <a asp-action="edit" asp-route-id="@bug.Id" class="btn btn-primary">Edit</a>
                 </td>

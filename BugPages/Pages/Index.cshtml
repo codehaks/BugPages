@@ -1,8 +1,50 @@
 ﻿@page
 @model BugPages.Pages.IndexModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
     ViewData["Title"] = "Home";
 }
 
-<h2>Home</h2>
+<h2>Bugs</h2>
+<hr />
+
+@{
+    var i = 1;
+}
+
+<h2>Bug Pages</h2>
+<hr>
+
+<a asp-page="create" class="btn btn-success">Create new</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <td>Id</td>
+            <th>Name</th>
+            <th>Desc</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bug in Model.Bugs)
+        {
+            <tr>
+                <td>@i</td>
+                <td>@bug.Id</td>
+                <td>@bug.Name</td>
+                <td>@bug.Summary</td>
+                <td>
+                    <a asp-action="details" asp-route-id="@bug.Id" class="btn btn-default">Details</a>
+                    <a asp-action="delete" asp-route-id="@bug.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="edit" asp-route-id="@bug.Id" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
 

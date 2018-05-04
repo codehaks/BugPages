@@ -1,0 +1,22 @@
+﻿@page
+@model BugPages.Pages.EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h2>Edit</h2>
+<hr />
+
+<form method="post">
+    <input asp-for="Bug.Id" hidden />
+
+    <input asp-for="Bug.Name" placeholder="Name" class="form-control" />
+    <br>
+    <input asp-for="Bug.Summary" placeholder="Description" class="form-control" />
+    <br>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="index" class="btn btn-link">Back to list</a>
+
+</form>

@@ -24,6 +24,7 @@ namespace BugPages
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
 
             app.UseMvcWithDefaultRoute();
         }

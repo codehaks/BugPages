@@ -14,7 +14,7 @@ namespace BugPages.Models
 
         [Required]
         public string Summary { get; set; }
-        public DateTime TimeCreated { get; set; }
+        public DateTime TimeCreated => DateTime.Now;
 
     }
 }

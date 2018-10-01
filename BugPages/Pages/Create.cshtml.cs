@@ -28,15 +28,7 @@ namespace BugPages.Pages
             {
                 return Page();
             }
-
-            //using (var db = new LiteDatabase(@"bug.db"))
-            //{
-            //    var bugs = db.GetCollection<Bug>();
-            //    bugs.Insert(Bug);
-
-            //}
-
-            var bugs = _db.Database.GetCollection<Bug>();
+            var bugs = _db.Context.GetCollection<Bug>();
             bugs.Insert(Bug);
 
             return RedirectToPage("./index");

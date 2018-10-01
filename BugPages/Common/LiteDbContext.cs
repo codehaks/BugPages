@@ -6,14 +6,14 @@ namespace BugPages.Common
 {
     public class LiteDbContext
     {
-        public readonly LiteDatabase Database;
+        public readonly LiteDatabase Context;
         public LiteDbContext(IOptions<LiteDbConfig> configs)
         {
             try
             {
-                var client = new LiteDatabase(configs.Value.DatabasePath);
-                if (client != null)
-                    Database = client;
+                var db = new LiteDatabase(configs.Value.DatabasePath);
+                if (db != null)
+                    Context = db;
             }
             catch (Exception ex)
             {

@@ -11,8 +11,7 @@ namespace BugPages
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.Configure<LiteDbConfig>(options => options.DatabasePath = @"bug.db");
-            services.AddTransient<LiteDbContext, LiteDbContext>();
+            services.AddLiteDb(@"bug.db");
         }
 
 

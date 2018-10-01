@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BugPages.Common;
 using BugPages.Models;
 using LiteDB;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,13 @@ namespace BugPages.Pages
         [BindProperty]
         public Bug Bug { get; set; }
 
+        private readonly LiteDbContext _db;
+
+        public CreateModel(LiteDbContext db)
+        {
+            _db = db;
+        }
+
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
@@ -21,12 +29,16 @@ namespace BugPages.Pages
                 return Page();
             }
 
-            using (var db = new LiteDatabase(@"bug.db"))
-            {
-                var bugs = db.GetCollection<Bug>();
-                bugs.Insert(Bug);
+            //using (var db = new LiteDatabase(@"bug.db"))
+            //{
+            //    var bugs = db.GetCollection<Bug>();
+            //    bugs.Insert(Bug);
 
-            }
+            //}
+
+            var bugs = _db.Database.GetCollection<Bug>();
+            bugs.Insert(Bug);
+
             return RedirectToPage("./index");
 
         }

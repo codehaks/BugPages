@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BugPages.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BugPages
@@ -15,6 +11,8 @@ namespace BugPages
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.Configure<LiteDbConfig>(options => options.DatabasePath = @"bug.db");
+            services.AddTransient<LiteDbContext, LiteDbContext>();
         }
 
 

@@ -17,6 +17,11 @@
 <h2>Bug Pages</h2>
 <hr>
 
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-info" role="alert">@TempData["message"]</div>
+}
+
 <a asp-page="create" class="btn btn-success">Create new</a>
 
 <table class="table table-hover">

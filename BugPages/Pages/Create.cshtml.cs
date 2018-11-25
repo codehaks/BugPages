@@ -31,6 +31,8 @@ namespace BugPages.Pages
             var bugs = _db.Context.GetCollection<Bug>();
             bugs.Insert(Bug);
 
+            TempData["message"] = $"New bug created : {Bug.Name}";
+
             return RedirectToPage("./index");
 
         }

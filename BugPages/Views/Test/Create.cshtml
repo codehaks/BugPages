@@ -1,0 +1,54 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/pages/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+<h4>Bug</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input name="bugs[0].Name" class="form-control" />
+            </div>
+
+            <div id="list">
+
+
+            </div>
+
+            <button id="addMore" class="btn btn-default">Add More</button>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+    <script>
+        var index = 1;
+
+        var p1 = '<div class="form-group">';
+        var p2 = ' <input name="bugs[';
+        var p3 = '].Name" class="form-control" /></div>';
+
+        $("#addMore").click(function (event) {
+            event.preventDefault();
+            $("#list").append(p1 + p2 + index + p3);
+            index++;
+        });
+    </script>
+}

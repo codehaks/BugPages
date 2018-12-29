@@ -15,6 +15,12 @@ namespace BugPages.Controllers
             return View();
         }
 
+        [Route("test/create/form/{index}")]
+        public IActionResult _Form(int index)
+        {
+            return PartialView(index);
+        }
+
         [Route("test/create")]
         public IActionResult Create()
         {

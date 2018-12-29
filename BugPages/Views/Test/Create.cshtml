@@ -47,7 +47,12 @@
 
         $("#addMore").click(function (event) {
             event.preventDefault();
-            $("#list").append(p1 + p2 + index + p3);
+            //$("#list").append(p1 + p2 + index + p3);
+
+            $.ajax({ url: "/test/create/form/"+index, method: "GET" })
+                .done(function (partialForm) {
+                    $("#list").append(partialForm);
+                });
             index++;
         });
     </script>

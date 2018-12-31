@@ -9,7 +9,7 @@
 <h4>Bug</h4>
 <hr />
 <div class="row">
-    
+
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -37,36 +37,24 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<partial name="_form" model="1" />
+<div id="stack" hidden>
+    <partial name="_Form" />
+</div>
+
+
 
 @section Scripts {
 
     <script>
         var index = 1;
 
-        var p1 = '<div class="form-group">';
-        var p2 = ' <input name="bugs[';
-        var p3 = '].Name" class="form-control" /></div>';
-
-        var myCache = null;
+        var from=$("#stack").html();
 
         $("#addMore").click(function (event) {
             event.preventDefault();
-            //$("#list").append(p1 + p2 + index + p3);
 
-            
+            $("#list").append(from.replace('#',index));
 
-            if (myCache==null) {
-                $.ajax({ url: "/test/create/form/" + index, method: "GET" })
-                    .done(function (partialForm) {
-                        myCache = partialForm;
-                        $("#list").append(partialForm);
-                    });
-            } else {
-                $("#list").append(myCache);
-            }
-
-           
             index++;
         });
     </script>

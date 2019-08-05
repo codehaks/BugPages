@@ -18,6 +18,8 @@ namespace BugPages.Models
 
         public Status Status { get; set; }
 
+        public int Score { get; set; }
+
     }
 
     public enum Status

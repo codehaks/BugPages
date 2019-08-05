@@ -13,6 +13,83 @@
     <div class="panel-body">
         @Model.Bug.Summary
     </div>
+    <br />
+    <div class="panel-body">
+
+        <h5>Comments</h5>
+        <hr />
+        <div id="app">
+            <input class="form-control" v-model="body" />
+            <button class="btn btn-success" v-on:click="addComment">Submit</button>
+            <br />
+            <br />
+            <ul class="list-group" v-for="(comment,index) in comments">
+                <li class="list-group-item">{{comment.body}}</li>
+            </ul>
+
+
+        </div>
+    </div>
+
+
 </div>
 <a asp-page="index" class="btn btn-link">Back to list</a>
+
+@section Scripts{
+
+    <script src="~/lib/vue/vue.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                comments: [],
+                body: "",
+                bugId:null
+
+            },
+            created: function () {
+
+                this.bugId=@Model.Bug.Id;
+                this.getComments();
+
+            },
+            methods: {
+
+
+                addComment: function () {
+                    var vm = this;
+
+                    var newComment = {
+
+                        body: vm.body
+                    }
+
+                    $.ajax({ url: "/api/comment/"+vm.bugId, data: newComment, method: "POST" })
+                        .done(function (data) {
+                            vm.comments.splice(0, 0, newComment);
+
+                        }).fail(function () {
+
+                        }).always(function () {
+                            vm.body = "";
+                        });
+
+
+                },
+                getComments: function () {
+                    var vm = this;
+                    $.ajax({ url: "api/comment/"+vm.bugId, method: "GET" })
+                        .done(function (data) {
+                            vm.comments = data;
+                            console.table(vm.comments);
+
+                        }).fail(function () {
+
+                        });
+                }
+            }
+        });
+    </script>
+}
 

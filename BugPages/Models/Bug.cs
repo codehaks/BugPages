@@ -20,7 +20,7 @@ namespace BugPages.Models
 
         public int Score { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
 
     }
 

@@ -16,5 +16,13 @@ namespace BugPages.Models
         public string Summary { get; set; }
         public DateTime TimeCreated => DateTime.Now;
 
+        public Status Status { get; set; }
+
+    }
+
+    public enum Status
+    {
+        New=0,
+        Done=1
     }
 }

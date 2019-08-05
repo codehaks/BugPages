@@ -14,6 +14,8 @@
     <br>
     <input asp-for="Bug.Summary" placeholder="Description" class="form-control" />
     <br>
+    <select asp-for="Bug.Status" asp-items="Html.GetEnumSelectList<BugPages.Models.Status>()" class="form-control"></select>
+    <br />
     <button type="submit" class="btn btn-primary">Save</button>
     <a asp-page="index" class="btn btn-link">Back to list</a>
 

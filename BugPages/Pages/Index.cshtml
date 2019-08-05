@@ -28,6 +28,7 @@
             <td>Id</td>
             <th>Name</th>
             <th>Desc</th>
+            <th>Status</th>
             <th></th>
         </tr>
     </thead>
@@ -39,6 +40,7 @@
                 <td>@bug.Id</td>
                 <td>@bug.Name</td>
                 <td>@bug.Summary</td>
+                <td>@bug.Status</td>
                 <td>
                     <a asp-page="details" asp-route-id="@bug.Id" class="btn btn-default">Details</a>
                     <a asp-page="delete" asp-route-id="@bug.Id" class="btn btn-danger">Delete</a>

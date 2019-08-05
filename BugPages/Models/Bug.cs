@@ -20,6 +20,8 @@ namespace BugPages.Models
 
         public int Score { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+
     }
 
     public enum Status

@@ -16,5 +16,12 @@ namespace BugPages.Pages
             Bugs = bugs.FindAll();
 
         }
+
+        public IActionResult OnGetBugData([FromServices]LiteDbContext db)
+        {
+            var bugs = db.Context.GetCollection<Bug>();
+            Bugs = bugs.FindAll();
+            return new JsonResult(Bugs);
+        }
     }
 }

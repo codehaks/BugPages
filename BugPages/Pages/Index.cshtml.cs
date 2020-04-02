@@ -3,6 +3,7 @@ using BugPages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace BugPages.Pages
 {
@@ -21,6 +22,7 @@ namespace BugPages.Pages
         {
             var bugs = db.Context.GetCollection<Bug>();
             Bugs = bugs.FindAll();
+            Thread.Sleep(5000);
             return new JsonResult(Bugs);
         }
     }

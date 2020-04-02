@@ -15,12 +15,7 @@ namespace BugPages.Pages
         [BindProperty]
         public Bug Bug { get; set; }
 
-        private readonly LiteDbContext _db;
 
-        public CreateModel(LiteDbContext db)
-        {
-            _db = db;
-        }
 
         public IActionResult OnPost()
         {
@@ -28,8 +23,12 @@ namespace BugPages.Pages
             {
                 return Page();
             }
-            var bugs = _db.Context.GetCollection<Bug>();
-            bugs.Insert(Bug);
+
+            using (var db = new LiteDatabase("bug.db"))
+            {
+                var bugs = db.GetCollection<Bug>();
+                bugs.Insert(Bug);
+            }
 
             TempData["message"] = $"New bug created : {Bug.Name}";
 

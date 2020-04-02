@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BugPages.Common;
 using BugPages.Models;
 using LiteDB;
 using Microsoft.AspNetCore.Mvc;

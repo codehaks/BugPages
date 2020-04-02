@@ -1,5 +1,4 @@
-﻿using BugPages.Common;
-using BugPages.Models;
+﻿using BugPages.Models;
 using LiteDB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

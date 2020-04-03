@@ -7,8 +7,7 @@
 <div id="app">
     <h2>Using ajax in Razor Pages </h2>
     <hr />
-    <img src="~/spinner.gif" v-if="loading" />
-    <table class="table" v-else="loading">
+    <table class="table">
         <thead>
             <tr>
                 <th>#</th>
@@ -35,8 +34,7 @@
         var app = new Vue({
             el: "#app",
             data: {
-                bugs: [],
-                loading:false
+                bugs: []
             },
             created: function () {
                 this.getBugs();
@@ -46,11 +44,10 @@
 
                 getBugs: function () {
                     var vm = this;
-                    vm.loading = true;
+
                     $.ajax({ url: "/index?handler=BugData", method: "GET" })
                         .done(function (data) {
                             vm.bugs = data;
-                            vm.loading = false;
                         }).fail(function () {
                             // todo : log error
                         });

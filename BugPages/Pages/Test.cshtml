@@ -4,28 +4,29 @@
     ViewData["Title"] = "Ajax";
 }
 
-<div id="app">
-    <h2>Using ajax in Razor Pages </h2>
-    <hr />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Summary</th>
+    <div id="app">
+        <h2>Using ajax in Razor Pages </h2>
+        <hr />
+        <img src="~/spinner.gif" v-if="loading" />
+        <table class="table" v-else>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Summary</th>
+
+                </tr>
+            </thead>
+            <tr v-for="(bug,index) in bugs">
+                <td>{{index+1}}</td>
+                <td>{{bug.name}}</td>
+                <td>{{bug.summary}}</td>
 
             </tr>
-        </thead>
-        <tr v-for="(bug,index) in bugs">
-            <td>{{index+1}}</td>
-            <td>{{bug.name}}</td>
-            <td>{{bug.summary}}</td>
+        </table>
+        <partial name="_modals" />
 
-        </tr>
-    </table>
-    <partial name="_modals" />
-
-</div>
+    </div>
 @section Scripts{
 
     <script src="~/lib/vue/vue.min.js"></script>
@@ -34,7 +35,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                bugs: []
+                bugs: [],
+                loading:false
             },
             created: function () {
                 this.getBugs();
@@ -44,10 +46,12 @@
 
                 getBugs: function () {
                     var vm = this;
+                    vm.loading = true;
 
                     $.ajax({ url: "/index?handler=BugData", method: "GET" })
                         .done(function (data) {
                             vm.bugs = data;
+                            vm.loading = false;
                         }).fail(function () {
                             // todo : log error
                         });
